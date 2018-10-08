@@ -13,7 +13,7 @@ Begin Window Window1
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
-   MaxHeight       =   276
+   MaxHeight       =   32000
    MaximizeButton  =   False
    MaxWidth        =   600
    MenuBar         =   2146979839
@@ -22,7 +22,7 @@ Begin Window Window1
    MinimizeButton  =   False
    MinWidth        =   600
    Placement       =   0
-   Resizeable      =   False
+   Resizeable      =   True
    Title           =   "CasparCG Minimum"
    Visible         =   True
    Width           =   600
@@ -46,7 +46,7 @@ Begin Window Window1
       DataSource      =   ""
       Enabled         =   True
       Format          =   ""
-      Height          =   100
+      Height          =   92
       HelpTag         =   ""
       HideSelection   =   True
       Index           =   -2147483648
@@ -55,7 +55,7 @@ Begin Window Window1
       LimitText       =   0
       LineHeight      =   0.0
       LineSpacing     =   1.0
-      LockBottom      =   False
+      LockBottom      =   True
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   False
@@ -241,7 +241,7 @@ Begin Window Window1
       HelpTag         =   ""
       Index           =   -2147483648
       Italic          =   False
-      Left            =   141
+      Left            =   159
       LimitText       =   0
       LockBottom      =   False
       LockedInPosition=   False
@@ -278,7 +278,7 @@ Begin Window Window1
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   12
+      Left            =   20
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -300,7 +300,7 @@ Begin Window Window1
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   117
+      Width           =   130
    End
    Begin Label CasparCGPortLabel
       AutoDeactivate  =   True
@@ -313,7 +313,7 @@ Begin Window Window1
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   False
-      Left            =   298
+      Left            =   304
       LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
@@ -403,7 +403,7 @@ Begin Window Window1
       TabIndex        =   9
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "Write a CasparCG command (e.g. ""PLAY 1-10 AMB LOOP"")."
+      Text            =   "Write a CasparCG command (e.g. 'PLAY 1-10 ""AMB"" LOOP')."
       TextAlign       =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
