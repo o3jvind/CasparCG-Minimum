@@ -424,7 +424,8 @@ End
 #tag Events CasparCGConnecthor
 	#tag Event
 		Sub DataAvailable()
-		  StatusTextarea.Text = Me.ReadAll
+		  Dim s As String = Me.ReadAll
+		  StatusTextarea.Text = DefineEncoding(s, Encodings.UTF8)
 		End Sub
 	#tag EndEvent
 #tag EndEvents
