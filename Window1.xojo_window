@@ -9,7 +9,7 @@ Begin Window Window1
    FullScreen      =   False
    FullScreenButton=   False
    HasBackColor    =   False
-   Height          =   276
+   Height          =   890
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
@@ -26,7 +26,7 @@ Begin Window Window1
    Title           =   "CasparCG Minimum"
    Visible         =   True
    Width           =   600
-   Begin TCPSocket CasparCGConnecthor
+   Begin TCPSocket CasparCGConnector
       Address         =   ""
       Index           =   -2147483648
       LockedInPosition=   False
@@ -46,7 +46,7 @@ Begin Window Window1
       DataSource      =   ""
       Enabled         =   True
       Format          =   ""
-      Height          =   92
+      Height          =   328
       HelpTag         =   ""
       HideSelection   =   True
       Index           =   -2147483648
@@ -55,7 +55,7 @@ Begin Window Window1
       LimitText       =   0
       LineHeight      =   0.0
       LineSpacing     =   1.0
-      LockBottom      =   True
+      LockBottom      =   False
       LockedInPosition=   False
       LockLeft        =   True
       LockRight       =   False
@@ -75,14 +75,14 @@ Begin Window Window1
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   164
+      Top             =   536
       Transparent     =   True
       Underline       =   False
       UseFocusRing    =   True
       Visible         =   True
       Width           =   560
    End
-   Begin Label CasparCGStatusLabel
+   Begin Label CasparCGResponseLabel
       AutoDeactivate  =   True
       Bold            =   False
       DataField       =   ""
@@ -105,13 +105,13 @@ Begin Window Window1
       TabIndex        =   1
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "CasparCG Status"
+      Text            =   "CasparCG Response"
       TextAlign       =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   140
+      Top             =   504
       Transparent     =   True
       Underline       =   False
       Visible         =   True
@@ -415,17 +415,127 @@ Begin Window Window1
       Visible         =   True
       Width           =   451
    End
+   Begin Listbox MediaListBox
+      AutoDeactivate  =   True
+      AutoHideScrollbars=   True
+      Bold            =   False
+      Border          =   True
+      ColumnCount     =   1
+      ColumnsResizable=   False
+      ColumnWidths    =   ""
+      DataField       =   ""
+      DataSource      =   ""
+      DefaultRowHeight=   -1
+      Enabled         =   True
+      EnableDrag      =   False
+      EnableDragReorder=   False
+      GridLinesHorizontal=   0
+      GridLinesVertical=   0
+      HasHeading      =   False
+      HeadingIndex    =   -1
+      Height          =   304
+      HelpTag         =   ""
+      Hierarchical    =   False
+      Index           =   -2147483648
+      InitialParent   =   ""
+      InitialValue    =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      RequiresSelection=   False
+      Scope           =   0
+      ScrollbarHorizontal=   False
+      ScrollBarVertical=   True
+      SelectionType   =   0
+      ShowDropIndicator=   False
+      TabIndex        =   10
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   188
+      Transparent     =   False
+      Underline       =   False
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   560
+      _ScrollOffset   =   0
+      _ScrollWidth    =   -1
+   End
+   Begin Label MediaLabel
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   0
+      Selectable      =   False
+      TabIndex        =   11
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Media:"
+      TextAlign       =   0
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   156
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   100
+   End
 End
 #tag EndWindow
 
 #tag WindowCode
 #tag EndWindowCode
 
-#tag Events CasparCGConnecthor
+#tag Events CasparCGConnector
 	#tag Event
 		Sub DataAvailable()
 		  Dim s As String = Me.ReadAll
+		  //Copy the reponse to StatusTextarea
 		  StatusTextarea.Text = DefineEncoding(s, Encodings.UTF8)
+		  
+		  
+		  //We send and "CLS" when we opened the CasparCGConnector (check the code for the ConnectButton
+		  //And if this was "CLS" command - fill the MediaListBox
+		  
+		  
+		  //CasparCG will respond with a "200 CLS OK" if it was a successful "CLS" command
+		  If InStr(s, "200 CLS OK") = 1 Then
+		    //Clear the MediaListBox
+		    Self.MediaListBox.DeleteAllRows
+		    
+		    //Create an array for all the media
+		    Dim MediaNames() As String
+		    //CasparCG response is a string with all the mediafiles separated with Chr(13) and Chr(10)
+		    MediaNames() = Split(s, Chr(13) + Chr(10))
+		    
+		    //Now add the names to the MediaListBox
+		    //The first entry is "200 CLS OK" so we will start with 1 and the last two are empty so we will skip them
+		    For i As Integer =  1 to MediaNames().Ubound - 2
+		      MediaListBox.AddRow( MediaNames(i))
+		    Next
+		  End if
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -433,29 +543,31 @@ End
 	#tag Event
 		Sub Action()
 		  
-		  CasparCGConnecthor.Address = IPAddressTextField.Text
+		  CasparCGConnector.Address = IPAddressTextField.Text
 		  
 		  //Port number is an integer so we to convert the text in the textfield 
 		  Dim cPort As Integer 
 		  cPort = Val(PortTextField.Text)
 		  
-		  CasparCGConnecthor.Port = cPort
-		  CasparCGConnecthor.Connect
-		  
+		  CasparCGConnector.Port = cPort
+		  CasparCGConnector.Connect
 		  
 		  
 		  //while the socket isn't connected
-		  While Not CasparCGConnecthor.IsConnected
+		  While Not CasparCGConnector.IsConnected
 		    //check to see if the socket got an error
-		    If CasparCGConnecthor.LastErrorCode <> 0 then
-		      StatusTextarea.Text =  "Socket Error: " + str(CasparCGConnecthor.LastErrorCode)
+		    If CasparCGConnector.LastErrorCode <> 0 then
+		      StatusTextarea.Text =  "Socket Error: " + str(CasparCGConnector.LastErrorCode)
 		      Exit
 		    End If
 		    //poll the socket to let it do its thing
-		    CasparCGConnecthor.Poll
+		    CasparCGConnector.Poll
 		  Wend
-		  StatusTextarea.Text =  "Connected to CasparCG @ " + CasparCGConnecthor.Address + " / " + Str(cPort)
+		  StatusTextarea.Text =  "Connected to CasparCG @ " + CasparCGConnector.Address + " / " + Str(cPort)
 		  
+		  
+		  //When connected we want to send an "CLS" command to show available media
+		  CasparCGConnector.Write("CLS" + Chr(13) + Chr(10))
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -463,7 +575,7 @@ End
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
 		  If Key = Chr(13) or key=Chr(3) Then
-		    CasparCGConnecthor.Write(Me.Text + chr(13) + chr(10))
+		    CasparCGConnector.Write(Me.Text + chr(13) + chr(10))
 		    Return TRUE
 		  End if
 		End Function
@@ -472,8 +584,20 @@ End
 #tag Events CommandButton
 	#tag Event
 		Sub Action()
-		  CasparCGConnecthor.Write(CommandTextField.Text + chr(13) + chr(10))
+		  CasparCGConnector.Write(CommandTextField.Text + chr(13) + chr(10))
 		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events MediaListBox
+	#tag Event
+		Function CellBackgroundPaint(g As Graphics, row As Integer, column As Integer) As Boolean
+		  If row Mod 2 = 0 Then
+		    g.ForeColor= &cEEEEEE
+		  Else
+		    g.ForeColor= &cFFFFFF
+		  End If
+		  g.FillRect(0, 0, g.Width, g.Height)
+		End Function
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
