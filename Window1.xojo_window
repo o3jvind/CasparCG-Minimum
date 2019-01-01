@@ -420,9 +420,9 @@ Begin Window Window1
       AutoHideScrollbars=   True
       Bold            =   False
       Border          =   True
-      ColumnCount     =   1
+      ColumnCount     =   6
       ColumnsResizable=   False
-      ColumnWidths    =   ""
+      ColumnWidths    =   "40%,10%, 10%, 20%, 10%, 10%"
       DataField       =   ""
       DataSource      =   ""
       DefaultRowHeight=   -1
@@ -431,9 +431,9 @@ Begin Window Window1
       EnableDragReorder=   False
       GridLinesHorizontal=   0
       GridLinesVertical=   0
-      HasHeading      =   False
+      HasHeading      =   True
       HeadingIndex    =   -1
-      Height          =   304
+      Height          =   290
       HelpTag         =   ""
       Hierarchical    =   False
       Index           =   -2147483648
@@ -526,14 +526,24 @@ End
 		    Self.MediaListBox.DeleteAllRows
 		    
 		    //Create an array for all the media
-		    Dim MediaNames() As String
+		    Dim Media() As String
 		    //CasparCG response is a string with all the mediafiles separated with Chr(13) and Chr(10)
-		    MediaNames() = Split(s, Chr(13) + Chr(10))
+		    Media() = Split(s, Chr(13) + Chr(10))
 		    
 		    //Now add the names to the MediaListBox
 		    //The first entry is "200 CLS OK" so we will start with 1 and the last two are empty so we will skip them
-		    For i As Integer =  1 to MediaNames().Ubound - 2
-		      MediaListBox.AddRow( MediaNames(i))
+		    For i As Integer =  1 to Media().Ubound - 2
+		      //Every entry consists of 6 elements separated by a double space "  " for the first two entries and then a single space " "
+		      //Like "AMB"  MOVIE  6445960 20181230153223 268 1/25
+		      //Let's define a new string for each entry in this loop
+		      Dim SingleMedia As String = Media(i)
+		      //we can get the single parts of each entry wit NthField and add them to the MediaListBox
+		      MediaListBox.AddRow(NthField(SingleMedia, " ", 1),_
+		      NthField(SingleMedia, " ", 3),_
+		      NthField(SingleMedia, " ", 5),_
+		      NthField(SingleMedia, " ", 6),_
+		      NthField(SingleMedia, " ", 7),_
+		      NthField(SingleMedia, " ", 8))
 		    Next
 		  End if
 		End Sub
@@ -598,6 +608,16 @@ End
 		  End If
 		  g.FillRect(0, 0, g.Width, g.Height)
 		End Function
+	#tag EndEvent
+	#tag Event
+		Sub Open()
+		  Me.Heading(0) = "Name"
+		  Me.Heading(1) = "Type"
+		  Me.Heading(2) = "Size"
+		  Me.Heading(3) = "Created"
+		  Me.Heading(4) = "Frames"
+		  Me.Heading(5) = "FPS"
+		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag ViewBehavior
