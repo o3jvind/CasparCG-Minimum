@@ -8,8 +8,8 @@ Begin Window Window1
    Frame           =   0
    FullScreen      =   False
    FullScreenButton=   False
-   HasBackColor    =   False
-   Height          =   890
+   HasBackColor    =   True
+   Height          =   804
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
@@ -46,7 +46,7 @@ Begin Window Window1
       DataSource      =   ""
       Enabled         =   True
       Format          =   ""
-      Height          =   328
+      Height          =   147
       HelpTag         =   ""
       HideSelection   =   True
       Index           =   -2147483648
@@ -75,7 +75,7 @@ Begin Window Window1
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   536
+      Top             =   637
       Transparent     =   True
       Underline       =   False
       UseFocusRing    =   True
@@ -111,7 +111,7 @@ Begin Window Window1
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   504
+      Top             =   605
       Transparent     =   True
       Underline       =   False
       Visible         =   True
@@ -199,7 +199,7 @@ Begin Window Window1
       Cancel          =   False
       Caption         =   "Send"
       Default         =   False
-      Enabled         =   True
+      Enabled         =   False
       Height          =   22
       HelpTag         =   ""
       Index           =   -2147483648
@@ -255,7 +255,7 @@ Begin Window Window1
       TabIndex        =   5
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "127.0.0.1"
+      Text            =   "10.24.104.210"
       TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
@@ -502,10 +502,215 @@ Begin Window Window1
       Visible         =   True
       Width           =   100
    End
+   Begin PushButton GetMediaButton
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   "Get Media"
+      Default         =   False
+      Enabled         =   False
+      Height          =   22
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   500
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   12
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   132
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
+   End
+   Begin Canvas ThumbCanvas
+      AcceptFocus     =   False
+      AcceptTabs      =   False
+      AutoDeactivate  =   True
+      Backdrop        =   0
+      DoubleBuffer    =   False
+      Enabled         =   True
+      EraseBackground =   True
+      Height          =   90
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   13
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Top             =   490
+      Transparent     =   True
+      UseFocusRing    =   True
+      Visible         =   True
+      Width           =   160
+   End
+   Begin PushButton PlayButton
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   "Button"
+      Default         =   False
+      Enabled         =   True
+      Height          =   22
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   398
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   2
+      TabIndex        =   14
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   558
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
+   End
+   Begin PushButton StopButton
+      AutoDeactivate  =   True
+      Bold            =   False
+      ButtonStyle     =   "0"
+      Cancel          =   False
+      Caption         =   "Button"
+      Default         =   False
+      Enabled         =   True
+      Height          =   22
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   500
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   2
+      TabIndex        =   15
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   558
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
+   End
+   Begin PopupMenu ChannelPopup
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   22
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      InitialValue    =   ""
+      Italic          =   False
+      Left            =   192
+      ListIndex       =   0
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   2
+      TabIndex        =   16
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   558
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
+   End
+   Begin PopupMenu LayerPopUp
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   22
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      InitialValue    =   ""
+      Italic          =   False
+      Left            =   295
+      ListIndex       =   0
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Scope           =   2
+      TabIndex        =   17
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   558
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
+   End
 End
 #tag EndWindow
 
 #tag WindowCode
+	#tag Method, Flags = &h21
+		Private Sub CreateThumb(s As String)
+		  Try
+		    Dim PictureStringParts() As String = Split(s, Chr(13) + Chr(10))
+		    Dim Thumb As Picture
+		    Thumb = picture.FromData(DecodeBase64(PictureStringParts(1)))
+		    
+		    Self.ThumbCanvas.Backdrop = Thumb.ResizePicture(160, 90)
+		  Catch e As RuntimeException
+		    
+		    MsgBox("Could not create a thumbnail")
+		  End Try _
+		  
+		End Sub
+	#tag EndMethod
+
+
 #tag EndWindowCode
 
 #tag Events CasparCGConnector
@@ -516,8 +721,7 @@ End
 		  StatusTextarea.Text = DefineEncoding(s, Encodings.UTF8)
 		  
 		  
-		  //We send and "CLS" when we opened the CasparCGConnector (check the code for the ConnectButton
-		  //And if this was "CLS" command - fill the MediaListBox
+		  //We send a "CLS" command from the GetMediaButton
 		  
 		  
 		  //CasparCG will respond with a "200 CLS OK" if it was a successful "CLS" command
@@ -535,16 +739,32 @@ End
 		    For i As Integer =  1 to Media().Ubound - 2
 		      //Every entry consists of 6 elements separated by a double space "  " for the first two entries and then a single space " "
 		      //Like "AMB"  MOVIE  6445960 20181230153223 268 1/25
+		      
 		      //Let's define a new string for each entry in this loop
 		      Dim SingleMedia As String = Media(i)
+		      
+		      //The names are surrounded by double qoutes.
+		      //Lets get the name first by finding the second double quote.
+		      Dim FileName As String
+		      FileName = NthField(SingleMedia, """", 2)
+		      
+		      Dim FileData As String
+		      FileData = Mid(SingleMedia, FileName.Len + 3)
+		      'MsgBox(FileName + EndofLine + EndOfLine +  Mid(SingleMedia, FileName.Len + 3))
+		      
 		      //we can get the single parts of each entry wit NthField and add them to the MediaListBox
-		      MediaListBox.AddRow(NthField(SingleMedia, " ", 1),_
-		      NthField(SingleMedia, " ", 3),_
-		      NthField(SingleMedia, " ", 5),_
-		      NthField(SingleMedia, " ", 6),_
-		      NthField(SingleMedia, " ", 7),_
-		      NthField(SingleMedia, " ", 8))
+		      MediaListBox.AddRow(FileName),_
+		      NthField(FileData, " ", 3),_
+		      NthField(FileData, " ", 5),_
+		      NthField(FileData, " ", 6),_
+		      NthField(FileData, " ", 7),_
+		      NthField(FileData, " ", 8)
 		    Next
+		  End if
+		  
+		  
+		  If InStr(s, "THUMBNAIL RETRIEVE") <> 0 Then 
+		    Self.CreateThumb(s)
 		  End if
 		End Sub
 	#tag EndEvent
@@ -573,11 +793,13 @@ End
 		    //poll the socket to let it do its thing
 		    CasparCGConnector.Poll
 		  Wend
-		  StatusTextarea.Text =  "Connected to CasparCG @ " + CasparCGConnector.Address + " / " + Str(cPort)
 		  
-		  
-		  //When connected we want to send an "CLS" command to show available media
-		  CasparCGConnector.Write("CLS" + Chr(13) + Chr(10))
+		  //Check if the connection was successful
+		  If CasparCGConnector.IsConnected Then
+		    StatusTextarea.Text =  "Connected to CasparCG @ " + CasparCGConnector.Address + " / " + Str(cPort)
+		    CommandButton.Enabled = True
+		    GetMediaButton.Enabled = True
+		  End if
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -617,6 +839,42 @@ End
 		  Me.Heading(3) = "Created"
 		  Me.Heading(4) = "Frames"
 		  Me.Heading(5) = "FPS"
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub Change()
+		  If Me.ListIndex <> -1 Then
+		    Dim FileName As String
+		    FileName = Me.Cell(Me.ListIndex, 0)
+		    Self.CasparCGConnector.Write(" THUMBNAIL RETRIEVE " + """" + FileName + """" + Chr(13) + Chr(10))
+		  End if
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events GetMediaButton
+	#tag Event
+		Sub Action()
+		  CasparCGConnector.Write("CLS" + Chr(13) + Chr(10))
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events ChannelPopup
+	#tag Event
+		Sub Open()
+		  For i As Integer = 1 to 2
+		    Me.AddRow(Str(i))
+		  Next
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events LayerPopUp
+	#tag Event
+		Sub Open()
+		  For i As Integer = 1 to 10
+		    Me.AddRow(Str(i))
+		  Next
+		  
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
