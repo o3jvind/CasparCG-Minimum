@@ -255,7 +255,7 @@ Begin Window Window1
       TabIndex        =   5
       TabPanelIndex   =   0
       TabStop         =   True
-      Text            =   "10.24.104.210"
+      Text            =   "127.0.0.1"
       TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
@@ -567,7 +567,7 @@ Begin Window Window1
       Bold            =   False
       ButtonStyle     =   "0"
       Cancel          =   False
-      Caption         =   "Button"
+      Caption         =   "Play"
       Default         =   False
       Enabled         =   True
       Height          =   22
@@ -599,7 +599,7 @@ Begin Window Window1
       Bold            =   False
       ButtonStyle     =   "0"
       Cancel          =   False
-      Caption         =   "Button"
+      Caption         =   "Stop"
       Default         =   False
       Enabled         =   True
       Height          =   22
@@ -685,6 +685,76 @@ Begin Window Window1
       TextSize        =   0.0
       TextUnit        =   0
       Top             =   558
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   80
+   End
+   Begin Label Label1
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   192
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   2
+      Selectable      =   False
+      TabIndex        =   18
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Channel"
+      TextAlign       =   0
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   526
+      Transparent     =   False
+      Underline       =   False
+      Visible         =   True
+      Width           =   76
+   End
+   Begin Label Label2
+      AutoDeactivate  =   True
+      Bold            =   False
+      DataField       =   ""
+      DataSource      =   ""
+      Enabled         =   True
+      Height          =   20
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   False
+      Left            =   295
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      Multiline       =   False
+      Scope           =   2
+      Selectable      =   False
+      TabIndex        =   19
+      TabPanelIndex   =   0
+      TabStop         =   True
+      Text            =   "Layer"
+      TextAlign       =   0
+      TextColor       =   &c00000000
+      TextFont        =   "System"
+      TextSize        =   0.0
+      TextUnit        =   0
+      Top             =   526
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -847,6 +917,8 @@ End
 		    Dim FileName As String
 		    FileName = Me.Cell(Me.ListIndex, 0)
 		    Self.CasparCGConnector.Write(" THUMBNAIL RETRIEVE " + """" + FileName + """" + Chr(13) + Chr(10))
+		  Else
+		    Self.ThumbCanvas.Backdrop = NIL
 		  End if
 		End Sub
 	#tag EndEvent
@@ -864,16 +936,19 @@ End
 		  For i As Integer = 1 to 2
 		    Me.AddRow(Str(i))
 		  Next
+		  
+		  Me.ListIndex = 0
 		End Sub
 	#tag EndEvent
 #tag EndEvents
 #tag Events LayerPopUp
 	#tag Event
 		Sub Open()
-		  For i As Integer = 1 to 10
+		  For i As Integer = 1 to 20
 		    Me.AddRow(Str(i))
 		  Next
 		  
+		  Me.ListIndex = 9
 		  
 		End Sub
 	#tag EndEvent
