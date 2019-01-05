@@ -185,7 +185,7 @@ Begin Window Window1
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   98
+      Top             =   537
       Transparent     =   True
       Underline       =   False
       UseFocusRing    =   True
@@ -218,7 +218,7 @@ Begin Window Window1
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   98
+      Top             =   537
       Transparent     =   True
       Underline       =   False
       Visible         =   True
@@ -241,7 +241,7 @@ Begin Window Window1
       HelpTag         =   ""
       Index           =   -2147483648
       Italic          =   False
-      Left            =   159
+      Left            =   141
       LimitText       =   0
       LockBottom      =   False
       LockedInPosition=   False
@@ -291,7 +291,7 @@ Begin Window Window1
       TabPanelIndex   =   0
       TabStop         =   True
       Text            =   "CasparCG IP address:"
-      TextAlign       =   2
+      TextAlign       =   0
       TextColor       =   &c00000000
       TextFont        =   "System"
       TextSize        =   0.0
@@ -300,7 +300,7 @@ Begin Window Window1
       Transparent     =   False
       Underline       =   False
       Visible         =   True
-      Width           =   130
+      Width           =   116
    End
    Begin Label CasparCGPortLabel
       AutoDeactivate  =   True
@@ -409,7 +409,7 @@ Begin Window Window1
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   74
+      Top             =   513
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -458,7 +458,7 @@ Begin Window Window1
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   188
+      Top             =   86
       Transparent     =   False
       Underline       =   False
       UseFocusRing    =   True
@@ -496,7 +496,7 @@ Begin Window Window1
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   156
+      Top             =   54
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -528,7 +528,7 @@ Begin Window Window1
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   132
+      Top             =   53
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -556,7 +556,7 @@ Begin Window Window1
       TabIndex        =   13
       TabPanelIndex   =   0
       TabStop         =   True
-      Top             =   490
+      Top             =   401
       Transparent     =   True
       UseFocusRing    =   True
       Visible         =   True
@@ -569,7 +569,7 @@ Begin Window Window1
       Cancel          =   False
       Caption         =   "Play"
       Default         =   False
-      Enabled         =   True
+      Enabled         =   False
       Height          =   22
       HelpTag         =   ""
       Index           =   -2147483648
@@ -588,7 +588,7 @@ Begin Window Window1
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   558
+      Top             =   469
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -620,7 +620,7 @@ Begin Window Window1
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   558
+      Top             =   469
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -652,7 +652,7 @@ Begin Window Window1
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   558
+      Top             =   469
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -684,7 +684,7 @@ Begin Window Window1
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   558
+      Top             =   469
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -719,7 +719,7 @@ Begin Window Window1
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   526
+      Top             =   437
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -754,7 +754,7 @@ Begin Window Window1
       TextFont        =   "System"
       TextSize        =   0.0
       TextUnit        =   0
-      Top             =   526
+      Top             =   437
       Transparent     =   False
       Underline       =   False
       Visible         =   True
@@ -917,6 +917,9 @@ End
 		    Dim FileName As String
 		    FileName = Me.Cell(Me.ListIndex, 0)
 		    Self.CasparCGConnector.Write(" THUMBNAIL RETRIEVE " + """" + FileName + """" + Chr(13) + Chr(10))
+		    If Self.CasparCGConnector.IsConnected Then
+		      PlayButton.Enabled = True
+		    End if
 		  Else
 		    Self.ThumbCanvas.Backdrop = NIL
 		  End if
@@ -927,6 +930,20 @@ End
 	#tag Event
 		Sub Action()
 		  CasparCGConnector.Write("CLS" + Chr(13) + Chr(10))
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events PlayButton
+	#tag Event
+		Sub Action()
+		  Self.CasparCGConnector.Write("Play " + Self.ChannelPopup.Text + "-" + Self.LayerPopUp.Text + " " + Self.MediaListBox.Cell(Self.MediaListBox.ListIndex, 0) + Chr(13) + Chr(10))
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events StopButton
+	#tag Event
+		Sub Action()
+		  Self.CasparCGConnector.Write("Stop " + Self.ChannelPopup.Text + "-" + Self.LayerPopUp.Text + Chr(13) + Chr(10))
 		End Sub
 	#tag EndEvent
 #tag EndEvents
