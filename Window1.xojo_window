@@ -933,6 +933,18 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
+#tag Events ThumbCanvas
+	#tag Event
+		Sub Open()
+		  Dim p As New Picture(Me.Width, Me.Height, 32)
+		  
+		  p.Graphics.ForeColor = &c000000
+		  p.Graphics.DrawRect(0, 0, Me.Width, Me.Height)
+		  
+		  Me.Backdrop = P
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag Events PlayButton
 	#tag Event
 		Sub Action()
