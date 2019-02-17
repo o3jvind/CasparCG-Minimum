@@ -601,7 +601,7 @@ Begin Window Window1
       Cancel          =   False
       Caption         =   "Stop"
       Default         =   False
-      Enabled         =   True
+      Enabled         =   False
       Height          =   22
       HelpTag         =   ""
       Index           =   -2147483648
@@ -869,6 +869,7 @@ End
 		    StatusTextarea.Text =  "Connected to CasparCG @ " + CasparCGConnector.Address + " / " + Str(cPort)
 		    CommandButton.Enabled = True
 		    GetMediaButton.Enabled = True
+		    StopButton.Enabled = True
 		  End if
 		End Sub
 	#tag EndEvent
@@ -917,10 +918,9 @@ End
 		    Dim FileName As String
 		    FileName = Me.Cell(Me.ListIndex, 0)
 		    Self.CasparCGConnector.Write(" THUMBNAIL RETRIEVE " + """" + FileName + """" + Chr(13) + Chr(10))
-		    If Self.CasparCGConnector.IsConnected Then
-		      PlayButton.Enabled = True
-		    End if
+		    PlayButton.Enabled = True
 		  Else
+		    PlayButton.Enabled = False
 		    Self.ThumbCanvas.Backdrop = NIL
 		  End if
 		End Sub
@@ -949,6 +949,7 @@ End
 	#tag Event
 		Sub Action()
 		  Self.CasparCGConnector.Write("Play " + Self.ChannelPopup.Text + "-" + Self.LayerPopUp.Text + " " + Self.MediaListBox.Cell(Self.MediaListBox.ListIndex, 0) + Chr(13) + Chr(10))
+		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents
